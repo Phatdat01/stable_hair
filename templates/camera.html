@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shair Try on</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+        crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.2.3/css/fileinput.min.css">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/base.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/camera.css') }}">
+</head>
+
+<body>
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="card border-0 shadow my-5">
+            <div class="card-body">
+                {% if msg %}
+                <div class="result_title"><b>Lỗi:</b></div>
+                <span class="result_id">{{ msg }}</span>
+                <hr>
+                {% endif %}
+                <div class="container text-center mb-1">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4><a href="#" target="_blank"><b style="text-transform: uppercase">
+                                Shair Trying Camera
+                            </b></a></h4>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="capture-btn">
+                            <!-- Video Preview -->
+                            <video id="video" width="640" height="640" autoplay muted playsinline></video>
+                            <button id="capture" class="btn btn-primary my-3">📸 Take a Picture</button>
+                          </div>
+                        <div class="image-btn">
+                          <!-- Canvas Preview -->
+                          <div class="position-relative" style="width: 100%; max-width: 600px; margin: auto;">
+                              <button id="wig-prev" class="btn btn-secondary">‹</button>
+                          
+                              <div id="wig-container">
+                                  <div id="wig-selection" class="d-flex flex-nowrap mb-3">
+                                      {% for file in wig_files %}
+                                          <img src="{{ url_for('static', filename='wig/' + file + '.png') }}"
+                                               data-value="{{ file }}"
+                                               class="wig-thumb m-2 {% if file|string == '1' %}selected{% endif %}">
+                                      {% endfor %}
+                                  </div>
+                              </div>
+                          
+                              <button id="wig-next" class="btn btn-secondary">›</button>
+                          </div>
+                          <div id="img-content" name="img-content">
+                            <canvas id="canvas" width="400px" height="400px" style="border:1px solid #ccc;"></canvas><br>
+                            <img id="resultImage" src="#" style="display: none; max-width: 400px;">
+                          </div>
+                          <button id="upload" class="btn btn-success btn-recreate">⬆️ Submit</button>
+                          <div id="loading" style="display: none; font-weight: bold;">Loading...</div>
+                        </div>
+                      </div>
+                </div>
+                <div id="loading" style="display: none; font-weight: bold;">Loading...</div>
+            </div>
+
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.2.3/js/plugins/sortable.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.2.3/themes/fas/theme.min.js"
+        crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/camera.js') }}"></script>
+</body>
+
+</html>

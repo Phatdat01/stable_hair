@@ -1,0 +1,43 @@
+#wig-container {
+    overflow-x: auto;
+    position: relative;  /* Make sure buttons are positioned relative to this container */
+    -ms-overflow-style: none;  /* Hide scrollbar in IE and Edge */
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
+  }
+
+  #wig-container::-webkit-scrollbar {
+    display: none;  /* Hide scrollbar in Chrome, Safari, and Opera */
+  }
+
+  #wig-selection {
+    display: flex;
+    flex-wrap: nowrap;
+    transition: transform 0.3s ease;
+  }
+  .wig-thumb {
+    width: 100px; /* You can adjust the width of each wig image */
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  #wig-prev, #wig-next {
+    position: absolute;
+    top: 35%;
+    z-index: 1;
+    padding: 10px;
+  }
+  #wig-prev {
+    left: -30px;
+  }
+  #wig-next {
+    right: -30px;
+  }
+
+  @media (max-width: 768px) {
+    #video {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      height: 100%;
+      object-fit: cover;
+      background: black;
+    }
+  }
